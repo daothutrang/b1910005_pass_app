@@ -5,16 +5,23 @@
     </head>
     <body>
         <h3> Thêm sinh viên </h3>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="border">
-            MSSV<BR> <input type="text" name="name" value ="<?php echo $mssv;?>"><BR>
-            <input type="submit" name="submit" value="submit">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+		<label for="mssv">Mssv:</label><br>
+		<input type="text" id="mssv" name="mssv"><br>
+		<label for="hoten">Họ tên:</label><br>
+		<input type="text" id="hoten" name="hoten"><br>
+		<label for="namsinh">Năm sinh:</label><br>
+		<input type="text" id="namsinh" name="namsinh"><br>
+		<label for="sdt">SDT:</label><br>
+		<input type="text" id="sdt" name="sdt"><br>
+		<input type="submit" name="submit" value="Thêm">
         </form> 
 
         <?php
-            if($_SERVER["REQUEST_METHOD"] == "POST") {
-                $name = $_POST["name"];
-                $birthday = $_POST["birthday"];
-                $email = $_POST["email"];
+            $mssv = $_POST["mssv"];
+            $hoten = $_POST["hoten"];
+        $namsinh = $_POST["namsinh"];
+        $sdt = $_POST["sdt"]; 
     
                 $MYSQL_ADDON_HOST = getenv('MYSQL_ADDON_HOST');
                 $MYSQL_ADDON_PORT = getenv('MYSQL_ADDON_PORT');
@@ -30,7 +37,7 @@
                     echo "<br>" . "Đã kết nối với CSDL." . "<br>";
                 }
     
-                $sql = "INSERT INTO b1910005_pass_db (mssv) VALUES ('mssv)";
+                $sql = "INSERT INTO b1910005_pass_db (masv,ho_ten, nam_sinh, dienthoai) VALUES ('$mssv','$hoten', '$namsinh', '$sdt')";
     
                 if (mysqli_query($conn, $sql)) {
                     echo"<br>" . "Thêm sinh viên thành công.";
