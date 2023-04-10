@@ -35,7 +35,7 @@
             echo "Open database successfully\n";
         }
 
-        $sql = "INSERT INTO B1909984_paas_db (masv,hoten, nam_sinh, dienthoai) VALUES ('$mssv','$hoten', '$namsinh', '$sdt')";
+        $sql = "INSERT INTO B1910005_paas_db (masv,hoten, nam_sinh, dienthoai) VALUES ('$mssv','$hoten', '$namsinh', '$sdt')";
         if (mysqli_query($conn, $sql)) {
             echo "User added successfully.";
         } else {
