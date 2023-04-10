@@ -1,45 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Tạo bảng sinh viên</title>
-    </head>
-    <body>
-        <?php
-            $MYSQL_ADDON_HOST = getenv('MYSQL_ADDON_HOST');
-            $MYSQL_ADDON_PORT = getenv('MYSQL_ADDON_PORT');
-            $MYSQL_ADDON_DB = getenv('MYSQL_ADDON_DB');
-            $MYSQL_ADDON_USER = getenv('MYSQL_ADDON_USER');
-            $MYSQL_ADDON_PASSWORD = getenv('MYSQL_ADDON_PASSWORD');
-            $MYSQL_ADDON_URI = getenv('MYSQL_ADDON_URI');
+<?php 
+    $MYSQL_ADDON_HOST = getenv('MYSQL_ADDON_HOST'); 
+    $MYSQL_ADDON_PORT = getenv('MYSQL_ADDON_PORT'); 
+    $MYSQL_ADDON_BD = getenv('MYSQL_ADDON_DB'); 
+    $MYSQL_ADDON_USER = getenv('MYSQL_ADDON_USER');
+    $MYSQL_ADDON_PASSWORD = getenv('MYSQL_ADDON_PASSWORD');
+    $MYSQL_ADDON_URI= getenv('MYSQL_ADDON_URI');
 
-            echo "MySQL Uri: " . $MYSQL_ADDON_URI . "<br>";
+    echo "$MYSQL_ADDON_URI";
+    
 
-            // Kết nối đến MySQL
-            $conn = mysqli_connect($MYSQL_ADDON_HOST, $MYSQL_ADDON_USER, $MYSQL_ADDON_PASSWORD, $MYSQL_ADDON_DB, $MYSQL_ADDON_PORT);
+    $MYSQL_ADDON_HOST = getenv('MYSQL_ADDON_HOST');
+    $MYSQL_ADDON_PORT = getenv('MYSQL_ADDON_PORT');
+    $MYSQL_ADDON_DB = getenv('MYSQL_ADDON_DB');
+    $MYSQL_ADDON_USER = getenv('MYSQL_ADDON_USER');
+    $MYSQL_ADDON_PASSWORD = getenv('MYSQL_ADDON_PASSWORD');
 
-            // Kiểm tra kết nối
-            if ($conn === false) {
-                die("ERROR: Không thể kết nối tới csdl. " . mysqli_connect_error() . "<br><br>");
-            }
+    $conn = mysqli_connect($MYSQL_ADDON_HOST, $MYSQL_ADDON_USER, $MYSQL_ADDON_PASSWORD, $MYSQL_ADDON_DB);
 
-            // Tạo bảng users
-            $sql = "CREATE TABLE b1910005_pass_db (
-                id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                mssv   VARCHAR(50) NOT NULL,
-                ho_ten VARCHAR(50) NOT NULL,
-                nam_sinh INT NOT NULL,
-                dienthoai VARCHAR(50) NOT NULL
-                
-                
-            )";
-            if (mysqli_query($conn, $sql)) {
-                echo "Tạo bảng thành công." . "<br>";
-                echo "<script>alert('Đã tạo bảng thành công.');</script>";
-            } else {
-                echo "ERROR: Không thể thực thi $sql. " . mysqli_error($conn) . "<br>";
-                echo "<script>alert('Không thể tạo bảng.');</script>";
-            }
-        ?>
+    if (!$conn) {
+        echo "Error: Connect database\n <BR>";
+    } else {
+        echo "Connect database successfully\n <BR>";
+    }
 
-        
-</html>
+// Create table
+    $sql = "CREATE TABLE B1909984_paas_db (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    masv VARCHAR(10) NOT NULL,
+    hoten VARCHAR(30) NOT NULL,
+    nam_sinh INT(4) NOT NULL,
+    dienthoai VARCHAR(10),
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )";
+    
+    if (mysqli_query($conn, $sql)) {
+      echo "Tạo bảng sinh viên thành công!";
+    } else {
+      echo "Tạo bảng sinh viên thất bại: " . mysqli_error($conn);
+    }
+    
+    mysqli_close($conn);
+?>
+<br>
+<a href="index.php">Trở về trang chủ</a>
