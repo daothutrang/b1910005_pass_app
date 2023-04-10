@@ -18,12 +18,13 @@
                 echo "<br>" . "Error: Không thể kết nối với cơ sở dữ liệu.";
             } else {
                 echo "<br>" . "Đã kết nối với CSDL." . "<br>";
-                $sql = "SELECT * FROM b1910005_pass_db";
+                
+                $sql = "SELECT * FROM b1910005_sinhvien";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo "ID: " . $row["id"] . " - MSSV: " . $row["mssv"] ." - Họ và tên: " . $row["ho_ten"] . " - Năm sinh: " . $row["nam_sinh"] . " - Dien thoai: " . $row["dienthoai"] . "<br>";
+                        echo "ID: " . $row["id"] . " - Mã sinh viên: " . $row["masv"]. " - Họ và tên: " . $row["hoten"] . " - Năm sinh: " . $row["namsinh"] . " - Điện thoại: " . $row["dienthoai"] . "<br>";
                     }
                 } else {
                     echo "<br>" . "0 results";
@@ -31,5 +32,7 @@
                 mysqli_close($conn);
             }
         ?>
+        <!-- Thêm thẻ HTML để tạo liên kết trở về trang index.php -->
+        <br> <a href="index.php">Quay lại trang chủ</a> <br>
     </body>
 </html>
