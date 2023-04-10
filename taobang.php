@@ -24,7 +24,7 @@
     }
 
 // Create table
-    $sql = "CREATE TABLE B1909984_paas_db (
+    $sql = "CREATE TABLE B1910005_paas_db (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     masv VARCHAR(10) NOT NULL,
     hoten VARCHAR(30) NOT NULL,
